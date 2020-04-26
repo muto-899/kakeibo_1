@@ -1,0 +1,2 @@
+class SepDate < ApplicationRecord
+end

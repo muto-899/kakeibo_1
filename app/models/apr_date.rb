@@ -1,0 +1,2 @@
+class AprDate < ApplicationRecord
+end

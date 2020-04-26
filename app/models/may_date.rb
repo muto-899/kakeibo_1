@@ -1,0 +1,2 @@
+class MayDate < ApplicationRecord
+end

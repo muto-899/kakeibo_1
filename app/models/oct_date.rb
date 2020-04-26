@@ -1,0 +1,2 @@
+class OctDate < ApplicationRecord
+end

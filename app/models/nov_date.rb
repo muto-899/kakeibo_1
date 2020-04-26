@@ -1,0 +1,2 @@
+class NovDate < ApplicationRecord
+end

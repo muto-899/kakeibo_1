@@ -1,0 +1,2 @@
+class MarDate < ApplicationRecord
+end

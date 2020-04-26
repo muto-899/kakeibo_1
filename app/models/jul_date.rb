@@ -1,0 +1,2 @@
+class JulDate < ApplicationRecord
+end
