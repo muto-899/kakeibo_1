@@ -1,2 +1,20 @@
 <h1>AprDates#index</h1>
 <p>Find me in app/views/apr_dates/index.html.erb</p>
+
+<h3><%= link_to("home/index", "/") %></h3>
+<h3><%= link_to("new","/apr_dates/new") %></h3>
+
+<%= @date.strftime("%Y年%m月%d日") %>
+
+<table border="1" width="30%">
+  <% @apr_dates.each do |apr_date| %>
+    <tr align="center">
+      <td><%= apr_date.created_at.strftime("%m月%d日") %></td>
+      <td><%= apr_date.category %></td>
+      <td><%= apr_date.pay %>円</td>
+      <td><%= link_to("×", "/apr_dates/destroy", {method:"post"}) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= pie_chart @chart_date %>

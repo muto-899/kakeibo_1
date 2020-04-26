@@ -12,5 +12,9 @@ Rails.application.routes.draw do
   get 'mar_dates/index'
   get 'feb_dates/index'
   get 'jan_dates/index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  post 'apr_dates/create', to:'apr_dates#create'
+  post 'apr_dates/destroy', to:'apr_dates#destroy'
+  resources :apr_dates
+  
 end

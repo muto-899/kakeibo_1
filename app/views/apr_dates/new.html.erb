@@ -1,0 +1,10 @@
+<%= @date.strftime("%Y年%m月%d日") %>
+
+<%= form_tag ("/apr_dates/create") do %>
+  <%= label_tag :分類 %>
+  <%= select_tag :category, 
+      options_for_select(["食費","交際費","習い事","交通費","娯楽","生活費","衣服","美容","健康","光熱費","慶弔費","その他"]) %>
+  <%= label_tag :金額 %>
+  <%= number_field_tag :pay %>円
+  <%= submit_tag "追加" %>
+<% end %>
