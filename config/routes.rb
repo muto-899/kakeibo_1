@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   get 'jan_dates/index'
   
   post 'apr_dates/create', to:'apr_dates#create'
-  post 'apr_dates/destroy', to:'apr_dates#destroy'
+  delete 'apr_dates/:id/destroy', to:'apr_dates#destroy'
+  get 'apr_dates/income', to:'apr_dates#income'
   resources :apr_dates
   
 end

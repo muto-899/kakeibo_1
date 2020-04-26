@@ -2,19 +2,35 @@
 <p>Find me in app/views/apr_dates/index.html.erb</p>
 
 <h3><%= link_to("home/index", "/") %></h3>
-<h3><%= link_to("new","/apr_dates/new") %></h3>
+<h3><%= link_to("収入", "/apr_dates/income") %></h3>
+<h3><%= link_to("出費","/apr_dates/new") %></h3>
 
 <%= @date.strftime("%Y年%m月%d日") %>
 
-<table border="1" width="30%">
+<table border="1" width="40%">
+  <thead>
+    <tr>
+      <th>日付</th>
+      <th>収入/分類</th>
+      <th>収入</th>
+      <th>出費/分類</th>
+      <th>出費</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @apr_dates.each do |apr_date| %>
     <tr align="center">
       <td><%= apr_date.created_at.strftime("%m月%d日") %></td>
-      <td><%= apr_date.category %></td>
-      <td><%= apr_date.pay %>円</td>
-      <td><%= link_to("×", "/apr_dates/destroy", {method:"post"}) %></td>
+      <td><%= apr_date.income_category %></td>
+      <td><%= apr_date.income %></td>
+      <td><%= apr_date.pay_category %></td>
+      <td><%= apr_date.pay %></td>
+      <td><%= link_to "＞", apr_date_path(apr_date) %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>
+<h3>収入：<%= @income_total %>円　-　出費：<%= @pay_total %>円　＝　貯金：<%= @money_total %>円</h3>
 
 <%= pie_chart @chart_date %>

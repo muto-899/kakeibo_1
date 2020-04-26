@@ -10,102 +10,114 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_070504) do
+ActiveRecord::Schema.define(version: 2020_04_26_110240) do
 
   create_table "apr_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "aug_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "dec_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "feb_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "jan_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "jul_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "jun_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "mar_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "may_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "nov_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "oct_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
   create_table "sep_dates", force: :cascade do |t|
-    t.string "category"
     t.integer "income"
     t.integer "pay"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "income_category"
+    t.string "pay_category"
   end
 
 end
