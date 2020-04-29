@@ -28,15 +28,18 @@ li{
 }
 
 .copy-container h1{
-  font-size:100px;
-  text-align:center;
+  font-size:60px;
   margin-top:10px;
   margin-bottom:0px;
 }
 
-.contents img{
-  width:900px;
-  margin-left:120px;
+.copy-container p{
+  font-size:30px;
+}
+
+.image img{
+  width: 900px;
+  margin-left: 0%;
 }
 
 .devise-format{
