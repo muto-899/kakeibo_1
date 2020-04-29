@@ -1,0 +1,11 @@
+<h1>income</h1>
+<%= @date.strftime("%Y年%m月%d日") %>
+
+<%= form_tag ("/may_dates/create") do %>
+  <%= label_tag :分類 %>
+  <%= select_tag :income_category, 
+      options_for_select(["給料","手当て","小遣い","ボーナス","その他"]) %>
+  <%= label_tag :金額 %>
+  <%= number_field_tag :income %>円
+  <%= submit_tag "追加" %>
+<% end %>

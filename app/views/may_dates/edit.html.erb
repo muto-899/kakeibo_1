@@ -1,0 +1,26 @@
+<h1>edit</h1>
+<table border="1" width="60%">
+  <thead>
+    <tr>
+      <th>日付</th>
+      <th>収入/分類</th>
+      <th>収入</th>
+      <th>出費/分類</th>
+      <th>出費</th>
+      <th>更新</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= form_tag ("/may_dates/update") do %>
+    <tr align="center">
+      <td><%= @may_date.created_at.strftime("%m月%d日") %></td>
+      <td><%= select_tag :income_category, options_for_select(["給料","手当て","小遣い","ボーナス","その他"]) %></td>
+      <td><%= number_field_tag :income %></td>
+      <td><%= select_tag :pay_category, 
+              options_for_select(["食費","交際費","習い事","交通費","娯楽","生活費","衣服","美容","健康","光熱費","慶弔費","その他"]) %></td>
+      <td><%= number_field_tag :pay %></td>
+      <td><%=  submit_tag "変更" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

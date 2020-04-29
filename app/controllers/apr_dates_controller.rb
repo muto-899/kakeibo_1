@@ -9,7 +9,7 @@ class AprDatesController < ApplicationController
     @money_total = @income_total - @pay_total
   end
   
-  def new
+  def pay
     @apr_date = AprDate.new
     @date = DateTime.now
   end
@@ -24,12 +24,8 @@ class AprDatesController < ApplicationController
     if @apr_date.save
       redirect_to("/apr_dates/index")
     else 
-      render 'new'
+      render 'index'
     end
-  end
-  
-  def apr_date_params
-    params.permit(:income_category, :income, :pay_category, :pay)
   end
 
   def edit
@@ -42,7 +38,6 @@ class AprDatesController < ApplicationController
   
   def update
     @apr_date = AprDate.find_by(id: params[:id])
-    @apr_date.pay = params[:pay]
     if @apr_date.update(apr_date_params)
       redirect_to apr_dates_path
     else
@@ -55,5 +50,10 @@ class AprDatesController < ApplicationController
     @apr_date.destroy
     redirect_to("/apr_dates/index")
   end
+  
+  private
+    def apr_date_params
+      params.permit(:income_category, :income, :pay_category, :pay)
+    end
   
 end

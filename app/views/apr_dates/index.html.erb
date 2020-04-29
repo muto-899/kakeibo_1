@@ -3,7 +3,7 @@
 
 <h3><%= link_to("home/index", "/") %></h3>
 <h3><%= link_to("収入", "/apr_dates/income") %></h3>
-<h3><%= link_to("出費","/apr_dates/new") %></h3>
+<h3><%= link_to("出費","/apr_dates/pay") %></h3>
 
 <%= @date.strftime("%Y年%m月%d日") %>
 
@@ -33,4 +33,5 @@
 </table>
 <h3>収入：<%= @income_total %>円　-　出費：<%= @pay_total %>円　＝　貯金：<%= @money_total %>円</h3>
 
+<h2>出費/分類、円グラフ</h2>
 <%= pie_chart @chart_date %>

@@ -1,2 +1,36 @@
 <h1>MayDates#index</h1>
 <p>Find me in app/views/may_dates/index.html.erb</p>
+
+<h3><%= link_to("home/index", "/") %></h3>
+<h3><%= link_to("収入", "/may_dates/income") %></h3>
+<h3><%= link_to("出費","/may_dates/pay") %></h3>
+
+<%= @date.strftime("%Y年%m月%d日") %>
+
+<table border="1" width="40%">
+  <thead>
+    <tr>
+      <th>日付</th>
+      <th>収入/分類</th>
+      <th>収入</th>
+      <th>出費/分類</th>
+      <th>出費</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @may_dates.each do |may_date| %>
+    <tr align="center">
+      <td><%= may_date.created_at.strftime("%m月%d日") %></td>
+      <td><%= may_date.income_category %></td>
+      <td><%= may_date.income %></td>
+      <td><%= may_date.pay_category %></td>
+      <td><%= may_date.pay %></td>
+      <td><%= link_to "＞", may_date_path(may_date) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<h3>収入：<%= @income_total %>円　-　出費：<%= @pay_total %>円　＝　貯金：<%= @money_total %>円</h3>
+
+<%= pie_chart @chart_date %>

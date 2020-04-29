@@ -1,26 +1,20 @@
 <h1>edit</h1>
-<table border="1" width="60%">
-  <thead>
-    <tr>
-      <th>日付</th>
-      <th>収入/分類</th>
-      <th>収入</th>
-      <th>出費/分類</th>
-      <th>出費</th>
-      <th>更新</th>
-    </tr>
-  </thead>
-  <tbody>
-  <%= form_tag @apr_date do %>
-    <tr align="center">
-      <td><%= @apr_date.created_at.strftime("%m月%d日") %></td>
-      <td><%= select_tag @apr_date.income_category, options_for_select(["給料","手当て","小遣い","ボーナス","その他"]) %></td>
-      <td><%= number_field_tag @apr_date.income %></td>
-      <td><%= select_tag @apr_date.pay_category, 
-              options_for_select(["食費","交際費","習い事","交通費","娯楽","生活費","衣服","美容","健康","光熱費","慶弔費","その他"]) %></td>
-      <td><%= number_field_tag @apr_date.pay %></td>
-      <td><%=  %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+
+<%= form_tag ("/apr_dates/#{@apr_date.id}/update") do %>
+  <%= @apr_date.created_at.strftime("%m月%d日") %>
+  <%= label_tag :収入 %>
+  <%= select_tag :income_category,
+              options_for_select(["給料","手当て","小遣い","ボーナス","その他"],
+              selected: @apr_date.income_category ),
+              include_blank: true %>
+  <%= label_tag :金額 %>
+  <%= number_field_tag :income, value = @apr_date.income %>円
+  <%= label_tag :出費 %>
+  <%= select_tag :pay_category, 
+              options_for_select(["食費","交際費","習い事","交通費","娯楽","生活費","衣服","美容","健康","光熱費","慶弔費","その他"],
+              selected: @apr_date.pay_category ),
+              include_blank: true %>
+  <%= label_tag :金額 %>
+  <%= number_field_tag :pay, value = @apr_date.pay %>円
+  <%= submit_tag "変更" %>
+<% end %>
