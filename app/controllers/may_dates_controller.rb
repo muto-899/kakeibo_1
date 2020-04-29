@@ -27,10 +27,6 @@ class MayDatesController < ApplicationController
       render 'index'
     end
   end
-  
-  def may_date_params
-    params.permit(:income_category, :income, :pay_category, :pay)
-  end
 
   def edit
     @may_date = MayDate.find_by(id: params[:id])
@@ -55,5 +51,10 @@ class MayDatesController < ApplicationController
     @may_date.destroy
     redirect_to("/may_dates/index")
   end
+  
+  private
+    def may_date_params
+      params.permit(:income_category, :income, :pay_category, :pay)
+    end
   
 end

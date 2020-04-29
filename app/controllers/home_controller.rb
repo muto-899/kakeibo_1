@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
   
+  def top
+  end
+  
   def index
     @jan_income_total = JanDate.sum(:income)
     @jan_pay_total = JanDate.sum(:pay)

@@ -1,0 +1,33 @@
+<header>
+  <div class="header-logo">
+    <%= link_to"HOME", root_path %>
+  </div>
+  <div class="header-list">
+    <ul>
+      <li><%= link_to"login", new_user_session_path %></li>
+      <li><%= link_to"signin", new_user_registration_path %></li>
+      <li><%= link_to"signout", destroy_user_session_path %></li>
+      <li><%= link_to"Home/index", home_index_path %></li>
+    </ul>
+  </div>
+</header>
+<h1>edit</h1>
+
+<%= form_tag ("/oct_dates/#{@oct_date.id}/update") do %>
+  <%= @oct_date.created_at.strftime("%m月%d日") %>
+  <%= label_tag :収入 %>
+  <%= select_tag :income_category,
+              options_for_select(["給料","手当て","小遣い","ボーナス","その他"],
+              selected: @oct_date.income_category ),
+              include_blank: true %>
+  <%= label_tag :金額 %>
+  <%= number_field_tag :income, value = @oct_date.income %>円
+  <%= label_tag :出費 %>
+  <%= select_tag :pay_category, 
+              options_for_select(["食費","交際費","習い事","交通費","娯楽","生活費","衣服","美容","健康","光熱費","慶弔費","その他"],
+              selected: @oct_date.pay_category ),
+              include_blank: true %>
+  <%= label_tag :金額 %>
+  <%= number_field_tag :pay, value = @oct_date.pay %>円
+  <%= submit_tag "変更" %>
+<% end %>

@@ -1,0 +1,45 @@
+<header>
+  <div class="header-logo">
+    <%= link_to"HOME", root_path %>
+  </div>
+  <div class="header-list">
+    <ul>
+      <li><%= link_to"login", new_user_session_path %></li>
+      <li><%= link_to"signin", new_user_registration_path %></li>
+      <li><%= link_to"account", edit_user_registration_path %></li>
+      <li><%= link_to"signout", destroy_user_session_path %></li>
+      <li><%= link_to"Home/index", home_index_path %></li>
+    </ul>
+  </div>
+</header>
+<div class="devise-format">
+  <h2>Sign in</h2>
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+  
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "Sign in" %>
+    </div>
+  <% end %>
+  
+  <%= render "users/shared/links" %>
+</div>
