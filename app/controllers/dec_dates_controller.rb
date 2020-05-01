@@ -1,26 +1,31 @@
 class DecDatesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :time_now
   
   def index
-    @dec_dates = DecDate.all
-    @date = DateTime.now
-    @chart_date = DecDate.group(:pay_category).sum(:pay)
-    @income_total =DecDate.sum(:income)
-    @pay_total = DecDate.sum(:pay)
+    @dec_dates = DecDate.where(user_id: current_user.id)
+    @chart_date = DecDate.where(user_id: current_user.id).group(:pay_category).sum(:pay)
+    @income_total =DecDate.where(user_id: current_user.id).sum(:income)
+    @pay_total = DecDate.where(user_id: current_user.id).sum(:pay)
     @money_total = @income_total - @pay_total
   end
   
   def pay
     @dec_date = DecDate.new
-    @date = DateTime.now
   end
   
   def income
     @dec_date = DecDate.new
-    @date = DateTime.now
   end
   
   def create
-    @dec_date = DecDate.new(dec_date_params)
+    @dec_date = DecDate.new(
+      user_id: current_user.id,
+      income_category: params[:income_category],
+      income: params[:income],
+      pay_category: params[:pay_category],
+      pay: params[:pay]
+      )
     if @dec_date.save
       redirect_to("/dec_dates/index")
     else 
@@ -53,7 +58,7 @@ class DecDatesController < ApplicationController
   
   private
     def dec_date_params
-      params.permit(:income_category, :income, :pay_category, :pay)
+      params.permit(:user_id, :income_category, :income, :pay_category, :pay)
     end
     
 end

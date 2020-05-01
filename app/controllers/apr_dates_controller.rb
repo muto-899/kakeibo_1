@@ -3,10 +3,10 @@ class AprDatesController < ApplicationController
   before_action :time_now
   
   def index
-    @apr_dates = AprDate.all
-    @chart_date = AprDate.group(:pay_category).sum(:pay)
-    @income_total =AprDate.sum(:income)
-    @pay_total = AprDate.sum(:pay)
+    @apr_dates = AprDate.where(user_id: current_user.id)
+    @chart_date = AprDate.where(user_id: current_user.id).group(:pay_category).sum(:pay)
+    @income_total = AprDate.where(user_id: current_user.id).sum(:income)
+    @pay_total = AprDate.where(user_id: current_user.id).sum(:pay)
     @money_total = @income_total - @pay_total
   end
   
@@ -19,7 +19,13 @@ class AprDatesController < ApplicationController
   end
   
   def create
-    @apr_date = AprDate.new(apr_date_params)
+    @apr_date = AprDate.new(
+      user_id: current_user.id,
+      income_category: params[:income_category],
+      income: params[:income],
+      pay_category: params[:pay_category],
+      pay: params[:pay]
+      )
     if @apr_date.save
       redirect_to("/apr_dates/index")
     else 
@@ -52,7 +58,7 @@ class AprDatesController < ApplicationController
   
   private
     def apr_date_params
-      params.permit(:income_category, :income, :pay_category, :pay)
+      params.permit(:user_id, :income_category, :income, :pay_category, :pay)
     end
   
 end

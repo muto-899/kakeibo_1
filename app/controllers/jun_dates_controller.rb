@@ -1,11 +1,12 @@
 class JunDatesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :time_now
   
   def index
-    @jun_dates = JunDate.all
-    @date = DateTime.now
-    @chart_date = JunDate.group(:pay_category).sum(:pay)
-    @income_total = JunDate.sum(:income)
-    @pay_total = JunDate.sum(:pay)
+    @jun_dates = JunDate.where(user_id: current_user.id)
+    @chart_date = JunDate.where(user_id: current_user.id).group(:pay_category).sum(:pay)
+    @income_total = JunDate.where(user_id: current_user.id).sum(:income)
+    @pay_total = JunDate.where(user_id: current_user.id).sum(:pay)
     @money_total = @income_total - @pay_total
   end
   
@@ -20,7 +21,12 @@ class JunDatesController < ApplicationController
   end
   
   def create
-    @jun_date = JunDate.new(jun_date_params)
+    @jun_date = JunDate.new(
+      user_id: current_user.id,
+      income_category: params[:income_category],
+      income: params[:income],
+      pay_category: params[:pay_category],
+      pay: params[:pay])
     if @jun_date.save
       redirect_to("/jun_dates/index")
     else 
@@ -53,7 +59,7 @@ class JunDatesController < ApplicationController
   
   private
     def jun_date_params
-      params.permit(:income_category, :income, :pay_category, :pay)
+      params.permit(:user_id, :income_category, :income, :pay_category, :pay)
     end
     
 end

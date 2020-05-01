@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_065824) do
+ActiveRecord::Schema.define(version: 2020_05_01_110629) do
 
   create_table "apr_dates", force: :cascade do |t|
     t.integer "income"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "aug_dates", force: :cascade do |t|
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "dec_dates", force: :cascade do |t|
@@ -37,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "feb_dates", force: :cascade do |t|
@@ -46,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "jan_dates", force: :cascade do |t|
@@ -55,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "jul_dates", force: :cascade do |t|
@@ -64,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "jun_dates", force: :cascade do |t|
@@ -73,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "mar_dates", force: :cascade do |t|
@@ -82,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "may_dates", force: :cascade do |t|
@@ -91,6 +99,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "nov_dates", force: :cascade do |t|
@@ -100,6 +109,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "oct_dates", force: :cascade do |t|
@@ -109,6 +119,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "sep_dates", force: :cascade do |t|
@@ -118,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_065824) do
     t.datetime "updated_at", null: false
     t.string "income_category"
     t.string "pay_category"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

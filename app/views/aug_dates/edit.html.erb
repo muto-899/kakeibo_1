@@ -1,13 +1,10 @@
 <header>
   <div class="header-logo">
-    <%= link_to"HOME", root_path %>
+    <%= link_to"HOME", home_index_path %>
   </div>
   <div class="header-list">
     <ul>
-      <li><%= link_to"login", new_user_session_path %></li>
-      <li><%= link_to"signin", new_user_registration_path %></li>
-      <li><%= link_to"signout", destroy_user_session_path %></li>
-      <li><%= link_to"Home/index", home_index_path %></li>
+      <li>user_name : <%= link_to current_user.user_name, edit_user_registration_path %></li>
     </ul>
   </div>
 </header>

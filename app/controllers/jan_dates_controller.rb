@@ -1,8 +1,9 @@
 class JanDatesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :time_now
   
   def index
-    @jan_dates = JanDate.all
-    @date = DateTime.now
+    @jan_dates = JanDate.where(user_id: current_user.id)
     @chart_date = JanDate.group(:pay_category).sum(:pay)
     @income_total = JanDate.sum(:income)
     @pay_total = JanDate.sum(:pay)
@@ -11,16 +12,20 @@ class JanDatesController < ApplicationController
   
   def pay
     @jan_date = JanDate.new
-    @date = DateTime.now
   end
   
   def income
     @jan_date = JanDate.new
-    @date = DateTime.now
   end
   
   def create
-    @jan_date = JanDate.new(jan_date_params)
+    @jan_date = JanDate.new(
+      user_id: current_user.id,
+      income_category: params[:income_category],
+      income: params[:income],
+      pay_category: params[:pay_category],
+      pay: params[:pay]
+      )
     if @jan_date.save
       redirect_to("/jan_dates/index")
     else 
@@ -53,7 +58,7 @@ class JanDatesController < ApplicationController
   
   private
     def jan_date_params
-      params.permit(:income_category, :income, :pay_category, :pay)
+      params.permit(:user_id, :income_category, :income, :pay_category, :pay)
     end
     
 end

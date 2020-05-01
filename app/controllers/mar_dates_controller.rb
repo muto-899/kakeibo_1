@@ -1,11 +1,12 @@
 class MarDatesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :time_now
   
   def index
-    @mar_dates = MarDate.all
-    @date = DateTime.now
-    @chart_date = MarDate.group(:pay_category).sum(:pay)
-    @income_total = MarDate.sum(:income)
-    @pay_total = MarDate.sum(:pay)
+    @mar_dates = MarDate.where(user_id: current_user.id)
+    @chart_date = MarDate.where(user_id: current_user.id).group(:pay_category).sum(:pay)
+    @income_total = MarDate.where(user_id: current_user.id).sum(:income)
+    @pay_total = MarDate.where(user_id: current_user.id).sum(:pay)
     @money_total = @income_total - @pay_total
   end
   
@@ -20,7 +21,13 @@ class MarDatesController < ApplicationController
   end
   
   def create
-    @mar_date = MarDate.new(mar_date_params)
+    @mar_date = MarDate.new(
+      user_id: current_user.id,
+      income_category: params[:income_category],
+      income: params[:income],
+      pay_category: params[:pay_category],
+      pay: params[:pay]
+      )
     if @mar_date.save
       redirect_to("/mar_dates/index")
     else 
@@ -53,7 +60,7 @@ class MarDatesController < ApplicationController
   
   private
     def mar_date_params
-      params.permit(:income_category, :income, :pay_category, :pay)
+      params.permit(:user_id, :income_category, :income, :pay_category, :pay)
     end
     
 end

@@ -1,26 +1,31 @@
 class FebDatesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :time_now
   
   def index
-    @feb_dates = FebDate.all
-    @date = DateTime.now
-    @chart_date = FebDate.group(:pay_category).sum(:pay)
-    @income_total = FebDate.sum(:income)
-    @pay_total = FebDate.sum(:pay)
+    @feb_dates = FebDate.where(user_id: current_user.id)
+    @chart_date = FebDate.where(user_id: current_user.id).group(:pay_category).sum(:pay)
+    @income_total = FebDate.where(user_id: current_user.id).sum(:income)
+    @pay_total = FebDate.where(user_id: current_user.id).sum(:pay)
     @money_total = @income_total - @pay_total
   end
   
   def pay
     @feb_date = FebDate.new
-    @date = DateTime.now
   end
   
   def income
     @feb_date = FebDate.new
-    @date = DateTime.now
   end
   
   def create
-    @feb_date = FebDate.new(feb_date_params)
+    @feb_date = FebDate.new(
+      user_id: current_user.id,
+      income_category: params[:income_category],
+      income: params[:income],
+      pay_category: params[:pay_category],
+      pay: params[:pay]
+      )
     if @feb_date.save
       redirect_to("/feb_dates/index")
     else 
@@ -53,7 +58,7 @@ class FebDatesController < ApplicationController
   
   private
     def feb_date_params
-      params.permit(:income_category, :income, :pay_category, :pay)
+      params.permit(:user_id, :income_category, :income, :pay_category, :pay)
     end
     
 end

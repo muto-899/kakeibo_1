@@ -1,26 +1,31 @@
 class MayDatesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :time_now
   
   def index
-    @may_dates = MayDate.all
-    @date = DateTime.now
-    @chart_date = MayDate.group(:pay_category).sum(:pay)
-    @income_total = MayDate.sum(:income)
-    @pay_total = MayDate.sum(:pay)
+    @may_dates = MayDate.where(user_id: current_user.id)
+    @chart_date = MayDate.where(user_id: current_user.id).group(:pay_category).sum(:pay)
+    @income_total = MayDate.where(user_id: current_user.id).sum(:income)
+    @pay_total = MayDate.where(user_id: current_user.id).sum(:pay)
     @money_total = @income_total - @pay_total
   end
   
   def pay
     @may_date = MayDate.new
-    @date = DateTime.now
   end
   
   def income
     @may_date = MayDate.new
-    @date = DateTime.now
   end
   
   def create
-    @may_date = MayDate.new(may_date_params)
+    @may_date = MayDate.new(
+       user_id: current_user.id,
+      income_category: params[:income_category],
+      income: params[:income],
+      pay_category: params[:pay_category],
+      pay: params[:pay]
+      )
     if @may_date.save
       redirect_to("/may_dates/index")
     else 
@@ -54,7 +59,7 @@ class MayDatesController < ApplicationController
   
   private
     def may_date_params
-      params.permit(:income_category, :income, :pay_category, :pay)
+      params.permit(:user_id, :income_category, :income, :pay_category, :pay)
     end
   
 end

@@ -1,22 +1,21 @@
 class OctDatesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :time_now
   
   def index
-    @oct_dates = OctDate.all
-    @date = DateTime.now
-    @chart_date = OctDate.group(:pay_category).sum(:pay)
-    @income_total = OctDate.sum(:income)
-    @pay_total = OctDate.sum(:pay)
+    @oct_dates = OctDate.where(user_id: current_user.id)
+    @chart_date = OctDate.where(user_id: current_user.id).group(:pay_category).sum(:pay)
+    @income_total = OctDate.where(user_id: current_user.id).sum(:income)
+    @pay_total = OctDate.where(user_id: current_user.id).sum(:pay)
     @money_total = @income_total - @pay_total
   end
   
   def pay
     @oct_date = OctDate.new
-    @date = DateTime.now
   end
   
   def income
     @oct_date = OctDate.new
-    @date = DateTime.now
   end
   
   def create
@@ -53,7 +52,7 @@ class OctDatesController < ApplicationController
   
   private
     def oct_date_params
-      params.permit(:income_category, :income, :pay_category, :pay)
+      params.permit(:user_id, :income_category, :income, :pay_category, :pay)
     end
     
 end
