@@ -1,3 +1,13 @@
+<header>
+  <div class="header-logo">
+    <%= link_to"HOME", home_index_path(current_user.id) %>
+  </div>
+  <div class="header-list">
+    <ul>
+      <li><%= link_to"logout", destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </div>
+</header>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>

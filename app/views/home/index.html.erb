@@ -1,18 +1,15 @@
 <header>
   <div class="header-logo">
-    <%= link_to"HOME", root_path %>
+    <%= link_to"HOME", home_index_path(current_user.id) %>
   </div>
   <div class="header-list">
     <ul>
-      <li><%= link_to"login", new_user_session_path %></li>
-      <li><%= link_to"signin", new_user_registration_path %></li>
-      <li><%= link_to"signout", destroy_user_session_path %></li>
-      <li><%= link_to"Home/index", home_index_path %></li>
+      <li><%= link_to"account", edit_user_registration_path %></li>
+      <li><%= link_to"logout", destroy_user_session_path, method: :delete %></li>
     </ul>
   </div>
 </header>
 <h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
 
 <table border="1" width="30%">
   <tr align="center">

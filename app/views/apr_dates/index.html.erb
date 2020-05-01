@@ -1,22 +1,12 @@
 <header>
   <div class="header-logo">
-    <%= link_to"HOME", root_path %>
-  </div>
-  <div class="header-list">
-    <ul>
-      <li><%= link_to"login", new_user_session_path %></li>
-      <li><%= link_to"signin", new_user_registration_path %></li>
-      <li><%= link_to"signout", destroy_user_session_path %></li>
-      <li><%= link_to"Home/index", home_index_path %></li>
-    </ul>
+    <%= link_to"HOME", home_index_path(current_user.id) %>
   </div>
 </header>
-<h1>AprDates#index</h1>
-<p>Find me in app/views/apr_dates/index.html.erb</p>
-
+<h1>AprDates</h1>
 <h3><%= link_to("収入", "/apr_dates/income") %></h3>
 <h3><%= link_to("出費","/apr_dates/pay") %></h3>
-
+    
 <%= @date.strftime("%Y年%m月%d日") %>
 
 <table border="1" width="40%">

@@ -1,8 +1,8 @@
 class AprDatesController < ApplicationController
+  before_action :time_now
   
   def index
     @apr_dates = AprDate.all
-    @date = DateTime.now
     @chart_date = AprDate.group(:pay_category).sum(:pay)
     @income_total =AprDate.sum(:income)
     @pay_total = AprDate.sum(:pay)
@@ -11,12 +11,10 @@ class AprDatesController < ApplicationController
   
   def pay
     @apr_date = AprDate.new
-    @date = DateTime.now
   end
   
   def income
     @apr_date = AprDate.new
-    @date = DateTime.now
   end
   
   def create
