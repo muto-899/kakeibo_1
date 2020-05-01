@@ -1,4 +1,5 @@
 class AprDatesController < ApplicationController
+  before_action :authenticate_user!
   before_action :time_now
   
   def index

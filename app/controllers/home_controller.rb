@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   
   def top
   end
   
   def index
+    
     @jan_income_total = JanDate.sum(:income)
     @jan_pay_total = JanDate.sum(:pay)
     @jan_money_total = @jan_income_total - @jan_pay_total
@@ -67,5 +69,5 @@ class HomeController < ApplicationController
       ['１２月', @dec_money_total]
     ]
   end
-  
+
 end

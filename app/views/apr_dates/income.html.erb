@@ -2,6 +2,11 @@
   <div class="header-logo">
     <%= link_to"HOME", home_index_path(current_user.id) %>
   </div>
+  <div class="header-list">
+    <ul>
+      <li>user_name : <%= link_to current_user.user_name, edit_user_registration_path %></li>
+    </ul>
+  </div>
 </header>
 <h1>income</h1>
 <%= @date.strftime("%Y年%m月%d日") %>

@@ -1,10 +1,10 @@
 <header>
   <div class="header-logo">
-    <%= link_to"HOME", home_index_path(current_user.id) %>
+    <%= link_to"HOME", home_index_path %>
   </div>
   <div class="header-list">
     <ul>
-      <li><%= link_to"account", edit_user_registration_path %></li>
+      <li>user_name : <%= link_to current_user.user_name, edit_user_registration_path %></li>
       <li><%= link_to"logout", destroy_user_session_path, method: :delete %></li>
     </ul>
   </div>

@@ -6,6 +6,7 @@
     <ul>
       <li><%= link_to"login", new_user_session_path %></li>
       <li><%= link_to"signin", new_user_registration_path %></li>
+      <li><%= link_to"logout", destroy_user_session_path, method: :delete %></li>
     </ul>
   </div>
 </header>

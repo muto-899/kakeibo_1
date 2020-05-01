@@ -22,6 +22,10 @@ li{
   padding:10px 40px;
 }
 
+.header-list li{
+  color:#ffffff;
+}
+
 .main{
   padding:30px 80px;
 }
