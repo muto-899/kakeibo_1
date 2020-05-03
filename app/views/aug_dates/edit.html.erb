@@ -1,30 +1,21 @@
-<header>
-  <div class="header-logo">
-    <%= link_to"HOME", home_index_path %>
-  </div>
-  <div class="header-list">
-    <ul>
-      <li>user_name : <%= link_to current_user.user_name, edit_user_registration_path %></li>
-    </ul>
-  </div>
-</header>
-<h1>edit</h1>
-
-<%= form_tag ("/aug_dates/#{@aug_date.id}/update") do %>
-  <%= @aug_date.created_at.strftime("%m月%d日") %>
-  <%= label_tag :収入 %>
-  <%= select_tag :income_category,
-              options_for_select(["給料","手当て","小遣い","ボーナス","その他"],
-              selected: @aug_date.income_category ),
-              include_blank: true %>
-  <%= label_tag :金額 %>
-  <%= number_field_tag :income, value = @aug_date.income %>円
-  <%= label_tag :出費 %>
-  <%= select_tag :pay_category, 
-              options_for_select(["食費","交際費","習い事","交通費","娯楽","生活費","衣服","美容","健康","光熱費","慶弔費","その他"],
-              selected: @aug_date.pay_category ),
-              include_blank: true %>
-  <%= label_tag :金額 %>
-  <%= number_field_tag :pay, value = @aug_date.pay %>円
-  <%= submit_tag "変更" %>
-<% end %>
+<div class="contents">
+  <h1>編集</h1>
+  <%= form_tag ("/aug_dates/#{@aug_date.id}/update") do %>
+    <%= @aug_date.created_at.strftime("%m月%d日") %>
+    <%= label_tag :収入 %>
+    <%= select_tag :income_category,
+                options_for_select(["給料","手当て","小遣い","ボーナス","その他"],
+                selected: @aug_date.income_category ),
+                include_blank: true %>
+    <%= label_tag :金額 %>
+    <%= number_field_tag :income, value = @aug_date.income %>円
+    <%= label_tag :出費 %>
+    <%= select_tag :pay_category, 
+                options_for_select(["食費","交際費","習い事","交通費","娯楽","生活費","衣服","美容","健康","光熱費","慶弔費","その他"],
+                selected: @aug_date.pay_category ),
+                include_blank: true %>
+    <%= label_tag :金額 %>
+    <%= number_field_tag :pay, value = @aug_date.pay %>円
+    <%= submit_tag "変更" %>
+  <% end %>
+</div>

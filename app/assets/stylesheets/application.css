@@ -8,7 +8,7 @@ header a{
   text-decoration: none;
 }
 
-li{
+header li{
   list-style: none;
   float:left;
   font-size: 20px;
@@ -19,11 +19,19 @@ li{
   color:#ffffff;
   float: left;
   font-size:36px;
-  padding:10px 40px;
+  padding:10px 30px;
 }
 
 .header-list li{
   color:#ffffff;
+}
+
+.contents{
+  padding:0px 20px;
+}
+
+.contents-chart{
+  width:40%;
 }
 
 .main{
@@ -47,4 +55,8 @@ li{
 
 .devise-format{
   padding:30px 80px;
+}
+
+.column_chart{
+  width: 90%;
 }

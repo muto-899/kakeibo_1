@@ -1,38 +1,29 @@
-<header>
-  <div class="header-logo">
-    <%= link_to"HOME", root_path %>
-  </div>
-  <div class="header-list">
-    <ul>
-      <li><%= link_to"login", new_user_session_path %></li>
-      <li><%= link_to"signin", new_user_registration_path %></li>
-      <li><%= link_to"signout", destroy_user_session_path %></li>
-      <li><%= link_to"Home/index", home_index_path %></li>
-    </ul>
-  </div>
-</header>
-<h1>show</h1>
-<table border="1" width="40%">
-  <thead>
-    <tr>
-      <th>日付</th>
-      <th>収入/分類</th>
-      <th>収入</th>
-      <th>出費/分類</th>
-      <th>出費</th>
-      <th>編集</th>
-      <th>削除</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr align="center">
-      <td><%= @jun_date.created_at.strftime("%m月%d日") %></td>
-      <td><%= @jun_date.income_category %></td>
-      <td><%= @jun_date.income %></td>
-      <td><%= @jun_date.pay_category %></td>
-      <td><%= @jun_date.pay %></td>
-      <td><%= link_to ">", edit_apr_date_path %></td>
-      <td><%= link_to "×", "/jun_dates/#{@jun_date.id}/destroy", {method:"delete"} %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="contents">
+  <h1>詳細</h1>
+  <%= @date.strftime("%Y年%m月%d日") %>
+  
+  <table border="1" width="40%">
+    <thead>
+      <tr>
+        <th>日付</th>
+        <th>収入/分類</th>
+        <th>収入</th>
+        <th>出費/分類</th>
+        <th>出費</th>
+        <th>編集</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr align="center">
+        <td><%= @jun_date.created_at.strftime("%m月%d日") %></td>
+        <td><%= @jun_date.income_category %></td>
+        <td><%= @jun_date.income %></td>
+        <td><%= @jun_date.pay_category %></td>
+        <td><%= @jun_date.pay %></td>
+        <td><%= link_to edit_jun_date_path do %><i class="fas fa-angle-right fa-lg"></i><% end %></td>
+        <td><%= link_to "/jun_dates/#{@jun_date.id}/destroy", {method:"delete"} do %><i class="fas fa-trash"></i><% end %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

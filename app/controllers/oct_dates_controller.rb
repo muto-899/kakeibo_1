@@ -19,7 +19,13 @@ class OctDatesController < ApplicationController
   end
   
   def create
-    @oct_date = OctDate.new(oct_date_params)
+    @oct_date = OctDate.new(
+      user_id: current_user.id,
+      income_category: params[:income_category],
+      income: params[:income],
+      pay_category: params[:pay_category],
+      pay: params[:pay]
+      )
     if @oct_date.save
       redirect_to("/oct_dates/index")
     else 

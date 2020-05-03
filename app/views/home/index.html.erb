@@ -9,30 +9,34 @@
     </ul>
   </div>
 </header>
-<h1>Home#index</h1>
-
-<table border="1" width="30%">
-  <tr align="center">
-    <td><%= link_to("１月", "/jan_dates/index") %></td>
-    <td><%= link_to("２月", "/feb_dates/index") %></td>
-    <td><%= link_to("３月", "/mar_dates/index") %></td>
-  </tr>
-  <tr align="center">
-    <td><%= link_to("４月", "/apr_dates/index") %></td>
-    <td><%= link_to("５月", "/may_dates/index") %></td>
-    <td><%= link_to("６月", "/jun_dates/index") %></td>
-  </tr>
-  <tr align="center">
-    <td><%= link_to("７月", "/jul_dates/index") %></td>
-    <td><%= link_to("８月", "/aug_dates/index") %></td>
-    <td><%= link_to("９月", "/sep_dates/index") %></td>
-  </tr>
-  <tr align="center">
-    <td><%= link_to("１０月", "/oct_dates/index") %></td>
-    <td><%= link_to("１１月", "/nov_dates/index") %></td>
-    <td><%= link_to("１２月", "/dec_dates/index") %></td>
-  </tr>
-</table>
-
-<h2>貯金グラフ</h2>
-<%= column_chart @chart_date %>
+<div class="contents">
+  <h2><%= @date.strftime("%Y年%m月%d日") %></h2>
+  
+  <table border="1" width="30%">
+    <tr align="center">
+      <td><%= link_to("１月", "/jan_dates/index") %></td>
+      <td><%= link_to("２月", "/feb_dates/index") %></td>
+      <td><%= link_to("３月", "/mar_dates/index") %></td>
+    </tr>
+    <tr align="center">
+      <td><%= link_to("４月", "/apr_dates/index") %></td>
+      <td><%= link_to("５月", "/may_dates/index") %></td>
+      <td><%= link_to("６月", "/jun_dates/index") %></td>
+    </tr>
+    <tr align="center">
+      <td><%= link_to("７月", "/jul_dates/index") %></td>
+      <td><%= link_to("８月", "/aug_dates/index") %></td>
+      <td><%= link_to("９月", "/sep_dates/index") %></td>
+    </tr>
+    <tr align="center">
+      <td><%= link_to("１０月", "/oct_dates/index") %></td>
+      <td><%= link_to("１１月", "/nov_dates/index") %></td>
+      <td><%= link_to("１２月", "/dec_dates/index") %></td>
+    </tr>
+  </table>
+  
+  <h2>月別・収支グラフ</h2>
+  <div class="column_chart">
+    <%= column_chart @chart_date %>
+  </div>
+</div>

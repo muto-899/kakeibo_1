@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>家計簿</title>
+    <title>家計簿-5月</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,6 +13,16 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <header>
+      <div class="header-logo">
+        <%= link_to"HOME", home_index_path %>
+      </div>
+      <div class="header-list">
+        <ul>
+          <li>user_name : <%= link_to current_user.user_name, edit_user_registration_path %></li>
+        </ul>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

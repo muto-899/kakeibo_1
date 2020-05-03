@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  before_action :time_now
   
   def top
   end

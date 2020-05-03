@@ -1,44 +1,38 @@
-<header>
-  <div class="header-logo">
-    <%= link_to"HOME", home_index_path %>
-  </div>
-  <div class="header-list">
-    <ul>
-      <li>user_name : <%= link_to current_user.user_name, edit_user_registration_path %></li>
-    </ul>
-  </div>
-</header>
-<h1>AprDates</h1>
-<h3><%= link_to("収入", "/apr_dates/income") %></h3>
-<h3><%= link_to("出費","/apr_dates/pay") %></h3>
+<div class="contents">
+  <h1>４月</h1>
+  <h3>収入：<%= link_to "/apr_dates/income" do %><i class="fas fa-money-check"></i><% end %></h3>
+  <h3>出費：<%= link_to "/apr_dates/pay" do %><i class="fas fa-yen-sign"></i><% end %></h3>
+  
+  <%= @date.strftime("%Y年%m月%d日") %>
     
-<%= @date.strftime("%Y年%m月%d日") %>
-
-<table border="1" width="40%">
-  <thead>
-    <tr>
-      <th>日付</th>
-      <th>収入/分類</th>
-      <th>収入</th>
-      <th>出費/分類</th>
-      <th>出費</th>
-      <th>詳細</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @apr_dates.each do |apr_date| %>
-    <tr align="center">
-      <td><%= apr_date.created_at.strftime("%m月%d日") %></td>
-      <td><%= apr_date.income_category %></td>
-      <td><%= apr_date.income %></td>
-      <td><%= apr_date.pay_category %></td>
-      <td><%= apr_date.pay %></td>
-      <td><%= link_to "＞", apr_date_path(apr_date) %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<h3>収入：<%= @income_total %>円　-　出費：<%= @pay_total %>円　＝　貯金：<%= @money_total %>円</h3>
-
-<h2>出費/分類、円グラフ</h2>
-<%= pie_chart @chart_date %>
+  <table border="1" width="40%">
+    <thead>
+      <tr>
+        <th>日付</th>
+        <th>収入/分類</th>
+        <th>収入</th>
+        <th>出費/分類</th>
+        <th>出費</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @apr_dates.each do |apr_date| %>
+      <tr align="center">
+        <td><%= apr_date.created_at.strftime("%m月%d日") %></td>
+        <td><%= apr_date.income_category %></td>
+        <td><%= apr_date.income %></td>
+        <td><%= apr_date.pay_category %></td>
+        <td><%= apr_date.pay %></td>
+        <td><%= link_to apr_date_path(apr_date) do %><i class="fas fa-angle-right fa-lg"></i><% end %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <h3>収入：<%= @income_total %>円　-　出費：<%= @pay_total %>円　＝　貯金：<%= @money_total %>円</h3>
+    
+  <h2>出費/分類、円グラフ</h2>
+  <div class="contents-chart">
+    <%= pie_chart @chart_date %>
+  </div>
+</div>
